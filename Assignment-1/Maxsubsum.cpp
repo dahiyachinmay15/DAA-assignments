@@ -30,7 +30,8 @@ int maxsubsum(int arr[],int left,int right){
     int lm=maxsubsum(arr,left,mid);
     int rm=maxsubsum(arr,mid+1,right);
     int cm=crossingsum(arr,left,mid,right);
-    if(lm>=cm && lm>=rm){return lm;}
+    if(lm<0 && cm<0 && rm<0){return 0;}
+    else if(lm>=cm && lm>=rm){return lm;}
     else if(cm>=lm && cm>=rm){return cm;}
     else return rm;
 }
