@@ -1,7 +1,11 @@
 #include<iostream>
 using namespace std;
 
-int getmax(int arr[],int left,int mid,int right){
+int max(int x, int z){
+if(x>=z){return x;}
+else return z;
+}
+int crossingsum(int arr[],int left,int mid,int right){
     int sum=0;
     int leftsum=arr[mid];
     for(int i=mid;i>=left;i--){
@@ -21,11 +25,11 @@ int getmax(int arr[],int left,int mid,int right){
     return rightsum+leftsum;
 }
 int maxsubsum(int arr[],int left,int right){
-    if(left==right){return arr[left];}
+    if(left==right){return max(0, arr[left]);}
     int mid=(left+right)/2;
     int lm=maxsubsum(arr,left,mid);
     int rm=maxsubsum(arr,mid+1,right);
-    int cm=getmax(arr,left,mid,right);
+    int cm=crossingsum(arr,left,mid,right);
     if(lm>=cm && lm>=rm){return lm;}
     else if(cm>=lm && cm>=rm){return cm;}
     else return rm;
